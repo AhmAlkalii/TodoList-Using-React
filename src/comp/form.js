@@ -4,13 +4,16 @@ import {v4 as uuidv4} from "uuid";
 
 const Form = ({input,setInput,todos,setTodos,editTodo,setEditTodo }) => {
   
-  const updateTodo = (title,id,completed) => {
+  const updateTodo = (title, id, completed) => {
+    const updatedTime = new Date().toLocaleTimeString(); 
     const newTodo = todos.map((todo) =>
-      todo.id === id ? {title,id,completed} : todo  
+      todo.id === id ? { ...todo, title, completed, time: updatedTime } : todo
     );
     setTodos(newTodo);
-    setEditTodo("")
+    setEditTodo("");
   };
+  
+  
 
   useEffect(() => {
     if(editTodo){
@@ -25,14 +28,21 @@ const Form = ({input,setInput,todos,setTodos,editTodo,setEditTodo }) => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    if(!editTodo){
-      setTodos([...todos,{id: uuidv4(),title: input,completed: false}]);
+    if (!editTodo) {
+      const newTodo = {
+        id: uuidv4(),
+        title: input,
+        completed: false,
+        time: new Date().toLocaleTimeString(),
+      };
+      setTodos([...todos, newTodo]);
       setInput("");
-    }else{
-      updateTodo(input,editTodo.id,editTodo.completed)
+    } else {
+      updateTodo(input, editTodo.id, editTodo.completed);
     }
-  
   };
+  
+  
 
   return (
     <form  onSubmit={onFormSubmit}> 

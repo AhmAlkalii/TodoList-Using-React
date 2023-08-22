@@ -50,7 +50,7 @@
   cursor: pointer;
 }
 
-.list-item{
+/* .list-item{
   display: flex;
   margin: 20px 0;
   border:  1px solid #ccc;
@@ -58,8 +58,15 @@
   padding: 10px;
   max-height: 30px;
 
-}
+} */
 
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
 .button-complete,
 .button-delete,
 .button-edit{
@@ -107,3 +114,9 @@ button:focus{
   outline: none;
 }
 
+.time {
+  font-size: 15px;
+  color:cyan;
+  align-items: center;
+  margin-right: 10px;
+}
